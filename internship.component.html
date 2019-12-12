@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-1 col-10">
+      <br />
+
+      <h3 class="text-center">Internship Program {{year}}</h3>
+
+      <br />
+
+      <div class="row">
+        <div class="offset-lg-3 col-lg-6 offset-md-2 col-md-8 offset-xs-1 col-xs-10 formBlock">
+
+          <!-- Your Form Goes Here -->
+          <form [formGroup]="internshipApplicationForm" (ngSubmit)="apply()" class="form">
+              <div class="form-group">
+                <label><b>Full Name</b></label>
+                <input type="text" formControlName="internName" class="form-control">
+                <span class="error-message text-danger" *ngIf="!internshipApplicationForm.controls.internName.valid && internshipApplicationForm.controls.internName.dirty">
+                  Sorry,the entered name is of invalid pattern!
+                </span>
+              </div>
+  
+              <div class="form-group">
+                  <label><b>Gender</b></label><br>
+                  <input type="radio" formControlName="gender" value="M">Male
+                  <input type="radio" formControlName="gender" value="F">Female
+                  <input type="radio" formControlName="gender" value="O">Other
+              </div>
+  
+              <div class="form-group">
+                  <label><b>Email</b></label>
+                  <input type="email" formControlName="email" class="form-control">
+                  <span class="error-message text-danger" *ngIf="!internshipApplicationForm.controls.email.valid && internshipApplicationForm.controls.internName.dirty">
+                    Please enter a valid email address!
+                  </span>
+              </div>
+  
+              <div class="form-group">
+                  <label><b>Mobile Number</b></label>
+                  <input type="text" formControlName="mobileNumber" class="form-control">
+                  <span class="error-message text-danger" *ngIf="!internshipApplicationForm.controls.mobileNumber.valid && internshipApplicationForm.controls.internName.dirty">
+                    Enter a 10-digit mobile number!
+                  </span>
+              </div>
+  
+              <div class="form-group">
+                  <label><b>Internship Type</b></label>
+                  <select formControlName="internshipType" class="form-control">
+                      <option value="">Choose an internship Type</option>
+    
+                      <option [value]="i" *ngFor="let i of internshipTypeList">{{i | internshipType}}</option>
+               
+                  
+                  </select>
+                  <span class="error-message text-danger" *ngIf="!internshipApplicationForm.controls.internshipType.valid && internshipApplicationForm.controls.internName.dirty">
+                    Choose from one of 4 internship phases!
+                  </span>
+              </div>
+              <div class="form-group">
+                  <button class="btn btn-dark btn-block" type="submit" [disabled]="!internshipApplicationForm.valid">Apply</button>
+  
+              </div>
+            </form>
+
+
+          <br />
+          
+          <div>
+
+            <!-- The Success Message Goes Here -->
+            <div *ngIf="successMessage!=null">
+                <span class="text-success">{{successMessage}}</span>
+              </div>
+
+          </div>
+
+          <div>
+
+            <!-- The Error Message Goes Here -->
+            <div *ngIf="errorMessage!=null">
+                <span class="text-danger">{{errorMessage}}</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
